@@ -1,0 +1,22 @@
+{
+  "name": "cats",
+  "version": "1.0.0",
+  "description": "Croffplatform Lab1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "Joachim Ekström",
+  "license": "ISC",
+  "dependencies": {
+    "formik": "^2.1.4",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0"
+  }
+}

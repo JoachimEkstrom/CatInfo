@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
-import DataStorage from '../store.js'
+
 
 
 const GetCatInfo = (props) => {
@@ -11,10 +11,19 @@ const GetCatInfo = (props) => {
         fetch(`https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=${props.number}`) 
             .then((response) => response.json())
             .then((result) => {
+                console.log(result.length)
             
-                for( let i = 0; i < result.length; i++ ){
-                    array.push(result[i].text)
+                if (result.length == undefined){
+
+                    array.push(result.text)
+
+                } else {
+
+                    for( let i = 0; i < result.length; i++ ){
+                        array.push(result[i].text)
+                    }
                 }
+
                 setCatInfo(array)
                 
             })
@@ -24,7 +33,7 @@ const GetCatInfo = (props) => {
 
     return (
         <div>
-            {catInfo.map(cat => <p key={cat}>{cat}</p>)}
+            { catInfo.map(cat => <p key={cat}>{cat}</p>) }
         </div>
     )
 

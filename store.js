@@ -5,6 +5,7 @@ class DataStorage {
 
     constructor() {
         extendObservable(this, {
+            catPersonId: 0,
             catPersonName: '',
             catPersonColor: '',
             catPersonNumber: 0,

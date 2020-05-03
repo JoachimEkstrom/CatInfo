@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import GetCatInfo from '../components/GetCatInfo'
 import { observer } from 'mobx-react'
 import DataStorage from '../store'
-import Form from '../components/Form'
+import TheForm from '../components/TheForm'
 import ListCatPersons from '../components/ListCatPersons'
 
 
@@ -38,11 +38,8 @@ class Index extends Component {
                 </Head>
                 <Navbar></Navbar>
                 <h1>The Cat Person App!</h1>
-{/* 
-                <input value={this.state.name} onChange={ (event) => this.setState({name: event.target.value})}></input>
-                <button onClick={ () => this.addCatPerson()}>Add a new CatPerson</button>
-                <GetCatInfo number={5}></GetCatInfo> */}
-                <Form></Form>
+
+                <TheForm></TheForm>
                 <ListCatPersons></ListCatPersons>
                     
             </div>

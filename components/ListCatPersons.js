@@ -8,15 +8,14 @@ const ListCatPersons = () => {
 
     return (
         <div>
-            {DataStorage.catPersons.map(Persons => (
-
-                <Link href="/[CatPerson]">
-
-                  <a key={Persons.name}>{Persons.name}</a>
-
-                </Link>   
-                  
-            )
+            {DataStorage.catPersons.map((Persons, index) => (
+            
+                <div key={index}>
+                    <Link href='/[CatPerson]' as={`/${Persons.id}`}>
+                        <a>{Persons.name}</a>    
+                    </Link>   
+                </div>   
+                )
             )}
         </div>
     )

@@ -1,120 +1,157 @@
-import React, { Component, useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
+import styled from 'styled-components'
 import DataStorage from '../store.js' 
 import {Formik, useField, Form} from 'formik'   
 import * as Yup from 'yup'
 
-    
+
+const StyleForm = styled.form`
+  form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      margin: 50px auto;
+      h1 {
+        text-align: center;
+      }
+
+      div {
+        width: 400px;
+        position: relative;
+      }
+      div label {
+        padding-top: 2px;
+        display:inline-block;
+        font-size: 22px;
+        height: 30px;
+        width: 160px;
+        margin: 5px;
+      }
+      div input{
+        float:right;
+        font-size: 22px;
+        width: 200px;
+        border: 6px;
+        height: 30px;
+        margin: 5px;
+        
+      }
+      div select {
+        float:right;
+        font-size: 22px;
+        width: 203px;
+        height: 30px;
+        margin: 5px;
+      }
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+  }
+  button {
+    background: #1997BF;
+    padding: 10px;
+    color: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  button:hover {
+    background: #FF97BF;
+  }
+`
+
+
+
 const TheForm = () => {
 
-    // const formik = useFormik({
-    //   initialValues: {
-    //     name: '',
-    //     color: '',
-    //     numberOfFacts: 1,
-    //   },
-    //   onSubmit: values => {
-    //     alert(JSON.stringify(values, null, 2));
-    //     let newCatPerson = {}
-
-    //     newCatPerson.name = values.name
-    //     newCatPerson.color = values.color
-    //     newCatPerson.number = values.numberOfFacts
-    //     newCatPerson.id = DataStorage.catPersonId
-
-    //     DataStorage.catPersons.push(newCatPerson)
-    //     DataStorage.catPersonId = DataStorage.catPersonId + 1
-    //     formik.resetForm()
-    //   },
-    // })
-
-    const NameInput = ({ label, ...props}) => {
-      const [field, meta] = useField(props)
-
-      return (
-        <div>
-          <label htmlFor= {props.id || props.name}>{label}</label>
-          <input className="text-input" {...field}{...props}></input>
-          {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-          ) : null }
-        </div>
-      )
-    }
-
-    const ColorInput = ({ label, ...props}) => {
-      const [field, meta] = useField(props)
-
-      return (
-        <div>
-          <label htmlFor= {props.id || props.color}>{label}</label>
-          <select {...field}{...props}></select>
-          {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-          ) : null }
-        </div>
-      )
-    }
-
-    const NumberInput = ({ label, ...props}) => {
-      const [field, meta] = useField(props)
-
-      return (
-        <div>
-          <label htmlFor= {props.id || props.number}>{label}</label>
-          <input className="number-input" {...field}{...props}></input>
-          {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-          ) : null }
-        </div>
-      )
-    }
+  const NameInput = ({ label, ...props}) => {
+    const [field, meta] = useField(props)
 
     return (
+      <div>
+        <label htmlFor= {props.id || props.name}>{label}</label>
+        <input className="text-input" {...field}{...props}></input>
+        {meta.touched && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null }
+      </div>
+    )
+  }
 
-      <Formik
-        initialValues={{
-          name: '',
-          color: '',
-          numberOfFacts : 1
-        }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .min(3, 'Need 3 chars or more!')
-            .required(),
-          color: Yup.string()
-            .min(3, 'Need 3 chars or more!')
-            .required(),
-          numberOfFacts: Yup.number()
-            .min(1, 'Need atleast one fact...')
-            .max(10, 'No more than ten')
-            .positive('Must be a positive number!')
-            .required()
+  const ColorInput = ({ label, ...props}) => {
+    const [field, meta] = useField(props)
 
-        })}
-        onSubmit = {( values, { setSubmitting, resetForm }) => {
+    return (
+      <div>
+        <label htmlFor= {props.id || props.color}>{label}</label>
+        <select className="select-input"{...field}{...props}></select>
+        {meta.touched && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null }
+      </div>
+    )
+  }
 
-          setTimeout(() => {
+  const NumberInput = ({ label, ...props}) => {
+    const [field, meta] = useField(props)
 
-            alert(JSON.stringify(values, null, 2))
-            let newCatPerson = {}
-    
-            newCatPerson.name = values.name
-            newCatPerson.color = values.color
-            newCatPerson.number = values.numberOfFacts
-            newCatPerson.id = DataStorage.catPersonId
-    
-            DataStorage.catPersons.push(newCatPerson)
-            DataStorage.catPersonId = DataStorage.catPersonId + 1
-            console.log(newCatPerson)
-            resetForm()
-            setSubmitting(false)
+    return (
+      <div>
+        <label htmlFor= {props.id || props.number}>{label}</label>
+        <input className="number-input" {...field}{...props}></input>
+        {meta.touched && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null }
+      </div>
+    )
+  }
 
-          }, 1000)
-        }
-      }  
-      >
-        {props => (
+  return (
+
+    <Formik
+      initialValues={{
+        name: '',
+        color: '',
+        numberOfFacts : 1
+      }}
+      validationSchema={Yup.object({
+        name: Yup.string()
+          .min(3, 'Need 3 chars or more!')
+          .required(),
+        color: Yup.string()
+          .min(3, 'Need 3 chars or more!')
+          .required(),
+        numberOfFacts: Yup.number()
+          .min(1, 'Need atleast one fact...')
+          .max(10, 'No more than ten')
+          .positive('Must be a positive number!')
+          .required()
+
+      })}
+      onSubmit = {( values, { setSubmitting, resetForm }) => {
+
+        setTimeout(() => {
+
+          alert(JSON.stringify(values, null, 2))
+          let newCatPerson = {}
+  
+          newCatPerson.name = values.name
+          newCatPerson.color = values.color
+          newCatPerson.number = values.numberOfFacts
+          newCatPerson.id = DataStorage.catPersonId
+  
+          DataStorage.catPersons.push(newCatPerson)
+          DataStorage.catPersonId = DataStorage.catPersonId + 1
+          resetForm()
+          setSubmitting(false)
+
+        }, 1000)
+      }
+    }  
+    >
+      {props => (
+        <StyleForm>
           <Form>
             <h1>Add CatPerson!</h1>
             <NameInput label="Name" name="name" type="text" placeholder="Enter name here"/>
@@ -129,42 +166,10 @@ const TheForm = () => {
             <NumberInput label="Number of facts?" name="numberOfFacts" type="number"/>
             <button type="submit">{props.isSubmitting ? 'Saving...' : 'Submit'} </button>
           </Form>
-        )}
-      </Formik>
+        </StyleForm>
+      )}
+    </Formik>
 
-      // <form onSubmit={formik.handleSubmit}>
-      //     <section>
-      //       <label htmlFor="name">Name </label>
-      //       <input
-      //       id="name"
-      //       name="name"
-      //       type="text"
-      //       onChange={formik.handleChange}
-      //       value={formik.values.name}
-      //       />
-      //       <br></br>
-      //       <br></br>
-      //       <label htmlFor="color">Choose a color </label>
-      //       <input
-      //       id="color"
-      //       name="color"
-      //       type="text"
-      //       onChange={formik.handleChange}
-      //       value={formik.values.color}
-      //       />
-      //       <br></br>
-      //       <br></br>
-      //       <label htmlFor="numberOfFacts">How many facts do you want? </label>
-      //       <input
-      //       id="numberOfFacts"
-      //       name="numberOfFacts"
-      //       type="number"
-      //       onChange={formik.handleChange}
-      //       value={formik.values.numberOfFacts}
-      //       />
-      //       <button type="submit">Submit</button>
-      //     </section>
-      // </form>
-    )
-  }
+  )
+}
 export default observer(TheForm)

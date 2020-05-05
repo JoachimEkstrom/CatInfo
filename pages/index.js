@@ -1,51 +1,54 @@
-import React, { Component } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import GetCatInfo from '../components/GetCatInfo'
+import styled from 'styled-components'
 import { observer } from 'mobx-react'
-import DataStorage from '../store'
+import DataStorage from '../store.js'
 import TheForm from '../components/TheForm'
 import ListCatPersons from '../components/ListCatPersons'
 
 
-class Index extends Component {
+const Body = styled.body`
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 70px auto;
+  width: 500px;
+  height: auto;
+`     
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            name: ''
-        }
-    }
-    
-    addCatPerson() {
+const TitleText = styled.h1`
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 50px auto;
+  width: 500px;
+  height: auto;
+`     
 
 
-        let value = this.state.name
-        DataStorage.catPersons.push(value);
-        this.setState({name: ''})
+const Index = () => {
 
-    }
-    
+    useEffect(() => {
+        DataStorage.selectedCatPerson = 0
+    },[])
 
-    render() {
-        
-        return (
+   
+    return (
 
-            <div>
+        <div>
+            <Body>
+
                 <Head>
                     <title>The Cat Person App!</title>
                 </Head>
-                <Navbar></Navbar>
-                <h1>The Cat Person App!</h1>
+
+                <TitleText>The Cat Information App!</TitleText>
 
                 <TheForm></TheForm>
                 <ListCatPersons></ListCatPersons>
-                    
-            </div>
-        )
+                            
+            </Body>
+                
+        </div>
+    )
 
-    }
 
 }
 

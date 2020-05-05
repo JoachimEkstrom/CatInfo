@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 
 
@@ -11,7 +11,6 @@ const GetCatInfo = (props) => {
         fetch(`https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=${props.number}`) 
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.length)
             
                 if (result.length == undefined){
 

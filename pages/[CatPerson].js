@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { observer } from 'mobx-react'
-import DataStorage from '../store'
+import DataStorage from '../store/index'
 import GetCatInfo from '../components/GetCatInfo'
 import styled from 'styled-components'
 
@@ -54,9 +54,9 @@ const CatPerson = () => {
             <Head>
                 <title>{ DataStorage.catPersons[personId].name}'s Cat infos!</title>
             </Head>
-            <TitleText>{ DataStorage.catPersons[personId].name}'s Cat infos!</TitleText>
+            <TitleText style={{color:`${DataStorage.catPersons[personId].color}`}}>{ DataStorage.catPersons[personId].name}'s Cat infos!</TitleText>
             
-            <GetCatInfo number= { DataStorage.catPersons[personId].number } color= { DataStorage.catPersons[personId].color }></GetCatInfo>
+            <GetCatInfo number= { DataStorage.catPersons[personId].number }></GetCatInfo>
 
             <Link href='/index'><Styleda>Back to startpage</Styleda></Link>
 

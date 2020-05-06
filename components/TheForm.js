@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
 import styled from 'styled-components'
-import DataStorage from '../store.js' 
+import DataStorage from '../store/index.js' 
 import {Formik, useField, Form} from 'formik'   
 import * as Yup from 'yup'
 

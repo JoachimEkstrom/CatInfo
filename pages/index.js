@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
-import DataStorage from '../store.js'
+import DataStorage from '../store/index'
 import TheForm from '../components/TheForm'
 import ListCatPersons from '../components/ListCatPersons'
 

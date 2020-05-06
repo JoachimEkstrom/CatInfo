@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import DataStorage from '../store.js'
+import DataStorage from '../store/index.js'
 import Link from 'next/link'
 import styled from 'styled-components'
 
@@ -25,8 +25,6 @@ const StyledLabel = styled.label`
     font-size: 22px;
     text-align: center;
 `
-
-
 
 const ListCatPersons = () => {
 

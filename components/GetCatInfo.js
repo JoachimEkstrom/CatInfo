@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
+import styled from 'styled-components'
 
+const PStyle = styled.p`
 
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+    padding: 10px;
+    width: 450px;
+    height: auto;
+    justify-content: center;
+`      
 
 const GetCatInfo = (props) => {
 
@@ -32,7 +42,7 @@ const GetCatInfo = (props) => {
 
     return (
         <div>
-            { catInfo.map(cat => <p key={cat}>{cat}</p>) }
+            { catInfo.map(cat => <PStyle key={cat}>{cat}</PStyle>) }
         </div>
     )
 

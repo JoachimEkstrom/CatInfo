@@ -1,15 +1,13 @@
-import { extendObservable } from 'mobx'
-
+import { extendObservable } from "mobx";
 
 class DataStorage {
-
-    constructor() {
-        extendObservable(this, {
-            catPersonId: 0,
-            selectedCatPerson: 0,
-            catPersons: [],
-        })
-    }
+  constructor() {
+    extendObservable(this, {
+      catPersonId: 0,
+      selectedCatPerson: 0,
+      catPersons: [],
+    });
+  }
 }
 
-export default new DataStorage()
+export default new DataStorage();
